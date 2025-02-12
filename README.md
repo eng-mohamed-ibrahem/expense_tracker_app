@@ -10,17 +10,14 @@ The Expense Tracker App is designed to help users manage their expenses efficien
 - **View All Expenses**: A comprehensive list of all expenses is available for users to review and manage their financial activities.
 - **Total Expense Calculation**: The app provides a total sum of all recorded expenses, offering users insight into their spending habits.
 - **Delete Expenses**: Users can remove any expense from the list if needed, maintaining an up-to-date record.
+- **Expense Categories**: Users can categorize their expenses, making it easier to track spending in different areas.
+- **Expense Filtering**: The app allows users to filter expenses by date, category, or amount, providing flexibility in viewing financial data.
 
 ## Technical Requirements
 
 - **State Management**: Utilizes Cubit from the `flutter_bloc` package to manage the application's state efficiently.
 - **Clean Architecture**: The codebase is organized with separate files for UI components, state management logic, and data models. This separation of concerns promotes a cleaner and more maintainable code structure.
 - **User Interface**: The app features a modern and user-friendly design, ensuring intuitive navigation and interaction for the users.
-
-## Bonus Features
-
-- **Expense Categories**: Users can categorize their expenses, making it easier to track spending in different areas.
-- **Expense Filtering**: The app allows users to filter expenses by date, category, or amount, providing flexibility in viewing financial data.
 
 ## Conclusion
 
