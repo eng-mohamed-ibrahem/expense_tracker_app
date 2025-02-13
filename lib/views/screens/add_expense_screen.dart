@@ -1,6 +1,7 @@
 import 'package:expense_tracker_app/core/utils/expense_builder/expense_builder.dart';
 import 'package:expense_tracker_app/core/utils/validators/validators.dart';
 import 'package:expense_tracker_app/cubit/expense_cubit/expense_cubit.dart';
+import 'package:expense_tracker_app/cubit/main_nav_cubit/main_nav_cubit.dart';
 import 'package:expense_tracker_app/views/widgets/category_drop_down.dart';
 import 'package:expense_tracker_app/views/widgets/expense_date_picker.dart';
 import 'package:expense_tracker_app/views/widgets/expense_form_field.dart';
@@ -103,8 +104,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         if (state is AddExpenseSuccess) {
           _showSuccessMessage();
           _resetForm();
-          Navigator.pop(context);
-          context.read<ExpenseCubit>().fetchAllExpenses();
+          context.read<MainNavCubit>().changeNavTap(0);
         }
         if (state is AddExpenseFailed) {
           ScaffoldMessenger.of(context).showSnackBar(

@@ -3,34 +3,47 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class ExpenseCard extends StatelessWidget {
-  const ExpenseCard({super.key, required this.transaction});
-  final Expense transaction;
+  const ExpenseCard({
+    super.key,
+    required this.expense,
+    required this.onDelete,
+  });
+  final Expense expense;
+  final void Function() onDelete;
 
   @override
   Widget build(BuildContext context) {
+    final isIncome = expense.isIncome;
+    final formattedDate = DateFormat.yMMMd().format(expense.date);
+
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.all(8),
       elevation: 3,
       child: ListTile(
         leading: Icon(
-          transaction.isIncome ? Icons.arrow_upward : Icons.arrow_downward,
-          color: transaction.isIncome ? Colors.green : Colors.red,
+          isIncome ? Icons.arrow_upward : Icons.arrow_downward,
+          color: isIncome ? Colors.green : Colors.red,
         ),
-        title: Text(
-          transaction.category.name,
-        ),
-        subtitle: Text(
-          DateFormat('yyyy-MM-dd').format(transaction.date),
-        ),
-        trailing: Text(
-          transaction.isIncome
-              ? '+ \$${transaction.amount.toStringAsFixed(2)}'
-              : '- \$${transaction.amount.toStringAsFixed(2)}',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: transaction.isIncome ? Colors.green : Colors.red,
-            fontSize: 16,
-          ),
+        title: Text(expense.category.name),
+        subtitle: Text(formattedDate),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              isIncome
+                  ? '+ \$ ${NumberFormat('#,##0.00').format(expense.amount)}'
+                  : '- \$ ${NumberFormat('#,##0.00').format(expense.amount)}',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: isIncome ? Colors.green : Colors.red,
+                fontSize: 16,
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.delete, color: Colors.grey),
+              onPressed: onDelete,
+            ),
+          ],
         ),
       ),
     );

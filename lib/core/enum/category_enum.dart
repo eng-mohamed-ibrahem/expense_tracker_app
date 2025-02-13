@@ -1,14 +1,17 @@
+import 'package:flutter/material.dart';
+
 enum CategoryEnum {
-  food("Food"),
-  transport("Transportation"),
-  entertainment("Entertainment"),
-  shopping("Shopping"),
-  utilities("Utilities"),
-  health("Healthcare"),
-  education("Education"),
-  others("Others");
+  food("Food", Colors.red),
+  transport("Transportation", Colors.blue),
+  entertainment("Entertainment", Colors.purple),
+  shopping("Shopping", Colors.orange),
+  utilities("Utilities", Colors.green),
+  health("Healthcare", Colors.teal),
+  education("Education", Colors.yellow),
+  others("Others", Colors.grey);
 
   final String name;
+  final Color color;
 
-  const CategoryEnum(this.name);
+  const CategoryEnum(this.name, this.color);
 }
