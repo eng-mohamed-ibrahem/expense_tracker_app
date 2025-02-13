@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:expense_tracker_app/models/expense/expense_model.dart';
 import 'package:expense_tracker_app/repository/expense_repo/expense_repo_interface.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,19 @@ class ExpenseCubit extends Cubit<ExpenseState> {
 
   final ExpenseRepository expenseRepository;
 
-  final List<Expense> expenses = [];
+  List<Expense> expenses = [];
+
+  void fetchAllExpenses() async {
+    emit(FetchAllExpenseLoading());
+    try {
+      final totalExpenses = await expenseRepository.getExpenses();
+      expenses = totalExpenses;
+      debugPrint(totalExpenses.toString());
+      emit(FetchAllExpenseLoaded(totalExpenses));
+    } catch (e) {
+      emit(FetchAllExpenseFailed(e.toString()));
+    }
+  }
 
   void addExpense(Expense expense) async {
     emit(AddExpenseLoading());

@@ -31,6 +31,7 @@ class HomeScreen extends StatelessWidget {
             return const Center(child: Text('Failed to load expenses'));
           }
           var expenses = context.watch<ExpenseCubit>().expenses;
+          debugPrint("expenses: $expenses, ${expenses.isEmpty}");
           return expenses.isEmpty
               ? const Center(
                   child: Column(

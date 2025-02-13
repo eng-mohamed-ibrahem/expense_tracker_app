@@ -53,17 +53,18 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     return Column(
       children: [
         ExpenseFormField(
-          // initialValue: _expenseBuilder.amount.toString(),
+          keyboardType: TextInputType.number,
+          textInputAction: TextInputAction.next,
           validator: Validators.amount,
           icon: Icon(Icons.attach_money),
           labelText: 'Amount',
           onChanged: (amount) {
-            _expenseBuilder.setAmount(double.parse(amount));
+            _expenseBuilder.setAmount(double.tryParse(amount) ?? 0);
           },
         ),
         const SizedBox(height: 20),
         ExpenseFormField(
-          // initialValue: _expenseBuilder.description,
+          textInputAction: TextInputAction.next,
           labelText: 'Description',
           icon: Icon(Icons.data_array_rounded),
           validator: Validators.description,
@@ -102,6 +103,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         if (state is AddExpenseSuccess) {
           _showSuccessMessage();
           _resetForm();
+          Navigator.pop(context);
+          context.read<ExpenseCubit>().fetchAllExpenses();
         }
         if (state is AddExpenseFailed) {
           ScaffoldMessenger.of(context).showSnackBar(

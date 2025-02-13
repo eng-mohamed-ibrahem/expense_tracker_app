@@ -11,9 +11,10 @@ class RootApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+      lazy: false,
       create: (context) => ExpenseCubit(
         expenseRepository: inject<ExpenseRepository>(),
-      ),
+      )..fetchAllExpenses(),
       child: MaterialApp(
         title: 'Expense Tracker',
         debugShowCheckedModeBanner: false,

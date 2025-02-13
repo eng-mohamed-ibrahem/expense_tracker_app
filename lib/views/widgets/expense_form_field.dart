@@ -7,6 +7,8 @@ class ExpenseFormField extends StatelessWidget {
   final String? labelText;
   final Widget? icon;
   final String? initialValue;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
 
   const ExpenseFormField({
     super.key,
@@ -16,6 +18,8 @@ class ExpenseFormField extends StatelessWidget {
     this.labelText,
     this.icon,
     this.initialValue,
+    this.keyboardType,
+    this.textInputAction,
   });
 
   @override
@@ -28,7 +32,8 @@ class ExpenseFormField extends StatelessWidget {
         border: OutlineInputBorder(),
         icon: icon,
       ),
-      keyboardType: TextInputType.number,
+      keyboardType: keyboardType,
+      textInputAction: textInputAction,
       validator: validator,
       onChanged: onChanged,
     );
